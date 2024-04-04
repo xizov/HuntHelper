@@ -10,6 +10,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		ideas.txt = ideas.txt
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECommons", "ECommons\ECommons\ECommons.csproj", "{57E48A44-65AC-41E2-BF2A-C54B966F7758}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -20,6 +22,20 @@ Global
 		{13C812E9-0D42-4B95-8646-40EEBF30636F}.Debug|x64.Build.0 = Debug|x64
 		{13C812E9-0D42-4B95-8646-40EEBF30636F}.Release|x64.ActiveCfg = Release|x64
 		{13C812E9-0D42-4B95-8646-40EEBF30636F}.Release|x64.Build.0 = Release|x64
+		{54C12BBB-B8B4-4FD6-854B-AA3F7DA43612}.Debug|x64.ActiveCfg = Debug|x64
+		{54C12BBB-B8B4-4FD6-854B-AA3F7DA43612}.Debug|x64.Build.0 = Debug|x64
+		{54C12BBB-B8B4-4FD6-854B-AA3F7DA43612}.Release|x64.ActiveCfg = Release|x64
+		{54C12BBB-B8B4-4FD6-854B-AA3F7DA43612}.Release|x64.Build.0 = Release|x64
+		{6A69E528-EC5C-4CDF-922A-724A6F6B385E}.Release|x64.ActiveCfg = Release|x64
+		{6A69E528-EC5C-4CDF-922A-724A6F6B385E}.Release|x64.Build.0 = Release|x64
+		{2245ACD2-3B95-4146-9325-CC02DAE3D184}.Debug|x64.ActiveCfg = Debug|x64
+		{2245ACD2-3B95-4146-9325-CC02DAE3D184}.Debug|x64.Build.0 = Debug|x64
+		{2245ACD2-3B95-4146-9325-CC02DAE3D184}.Release|x64.ActiveCfg = Release|x64
+		{2245ACD2-3B95-4146-9325-CC02DAE3D184}.Release|x64.Build.0 = Release|x64
+		{57E48A44-65AC-41E2-BF2A-C54B966F7758}.Debug|x64.ActiveCfg = Debug|x64
+		{57E48A44-65AC-41E2-BF2A-C54B966F7758}.Debug|x64.Build.0 = Debug|x64
+		{57E48A44-65AC-41E2-BF2A-C54B966F7758}.Release|x64.ActiveCfg = Release|x64
+		{57E48A44-65AC-41E2-BF2A-C54B966F7758}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

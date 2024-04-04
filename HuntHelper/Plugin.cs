@@ -10,6 +10,7 @@ using HuntHelper.Managers.MapData;
 using HuntHelper.Utilities;
 using System;
 using System.IO;
+using ECommons;
 
 namespace HuntHelper
 {
@@ -123,6 +124,8 @@ namespace HuntHelper
 
             this.PluginInterface.UiBuilder.Draw += DrawUI;
             this.PluginInterface.UiBuilder.OpenConfigUi += DrawConfigUI;
+            
+            ECommonsMain.Init(pluginInterface, this, ECommons.Module.DalamudReflector, ECommons.Module.ObjectFunctions);
         }
 
         public void Dispose()

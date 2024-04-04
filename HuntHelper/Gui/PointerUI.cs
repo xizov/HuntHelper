@@ -1,11 +1,13 @@
 ﻿using Dalamud.Game.ClientState.Objects.Types;
+using Dalamud.Game.ClientState.Objects.Enums;
 using Dalamud.Interface.Utility;
 using Dalamud.Plugin.Services;
 using HuntHelper.Managers.Hunts;
 using ImGuiNET;
 using System;
 using System.Numerics;
-
+using ECommons.DalamudServices;
+using System.Linq;
 namespace HuntHelper.Gui;
 
 public class PointerUI
@@ -31,6 +33,15 @@ public class PointerUI
         {
             currentMobs.ForEach((item) =>
                 PointToMobs(item.Rank, item.Mob));
+            
+            var aMob = currentMobs.First(o => o.Mob.ObjectKind == ObjectKind.BattleNpc &&
+                                                (BattleNpcSubKind)o.Mob.SubKind == BattleNpcSubKind.Enemy &&
+                                                GameObjectIsTargetable(o.Mob)).Mob;
+            if (aMob is not null && aMob.CurrentHp > 0 && GetTargetDistance(aMob) < 30)
+            {
+                Svc.Targets.Target = aMob;
+            }
+                    
         }
         catch (InvalidOperationException e)
         {
@@ -60,6 +71,7 @@ public class PointerUI
     {
         var floatingPointingIconThingyColour = GetPointerColour(rank);
         if (floatingPointingIconThingyColour == 0) return;
+        
 
         _gameGui.WorldToScreen(mob.Position, out var pointofFocusPosition);
         var windowOffsetY = -100;
@@ -110,6 +122,31 @@ public class PointerUI
         }
         ImGui.PopStyleVar();
 
+    }
+    
+    public static float GetTargetDistance(BattleNpc target)
+    {
+        if (target is null 
+            || Svc.ClientState.LocalPlayer is null)
+            return 0;
+
+        if (target.ObjectId == Svc.ClientState.LocalPlayer.ObjectId)
+            return 0;
+
+        Vector2 position = new(target.Position.X, target.Position.Z);
+        Vector2 selfPosition = new(Svc.ClientState.LocalPlayer.Position.X, Svc.ClientState.LocalPlayer.Position.Z);
+
+        return Math.Max(0, Vector2.Distance(position, selfPosition) - target.HitboxRadius - Svc.ClientState.LocalPlayer.HitboxRadius);
+    }
+    
+    public static unsafe bool GameObjectIsTargetable(GameObject obj)
+    {
+        return GameObjectInternal(obj)->GetIsTargetable();
+    }
+    
+    public static unsafe FFXIVClientStructs.FFXIV.Client.Game.Object.GameObject* GameObjectInternal(GameObject obj)
+    {
+        return (FFXIVClientStructs.FFXIV.Client.Game.Object.GameObject*)obj?.Address;
     }
 
     private void DrawDiamond(uint colour)
